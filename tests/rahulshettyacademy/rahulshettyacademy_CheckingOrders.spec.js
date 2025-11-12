@@ -1,0 +1,46 @@
+const { test, expect } = require('@playwright/test');
+ 
+ 
+test('@rahulshettyacademy_CheckingOrders', async ({ page }) => {
+      
+   await page.goto("http://www.rahulshettyacademy.com/client/");
+   await page.locator("input[id='userEmail']").fill("test1.test1@gmail.com");
+   await page.locator("input[id='userPassword']").fill("Test1Test1");
+   await page.locator("input[id='login']").click();
+   await page.locator("button[class='btn w-40 rounded']").nth(0).click();
+   await page.locator("button[class='btn btn-primary']").click();
+   await expect(page.locator("div[aria-label='Product Added To Cart']")).toBeVisible();
+   await page.locator("button[class='btn btn-custom']").nth(2).click();
+   await page.locator("button[class='btn btn-primary']").nth(-1).click();
+   await page.locator("input[class='input txt']").nth(0).fill("123");
+   await page.locator("input[class='input txt']").nth(1).fill("Test1 Test1");
+   await page.locator("input[placeholder='Select Country']").fill("United States");
+   await page.locator('body').click();
+   await page.locator("a[class='btnn action__submit ng-star-inserted']").click();
+   
+   //Error message if whole field are not filled.
+   //await page.locator("div[aria-label='Please Enter Full Shipping Information']").toBeVisible();
+     
+   await page.locator("h1[class='hero-primary']").toBeVisible();
+   //await page.locator("button[class='btn btn-primary mt-3 mb-3']").click();
+   await page.locator("label[routerlink='/dashboard/myorders']").click();
+   Order_ID1=await page.locator("label[class='ng-star-inserted']").nth(0);
+   Order_ID2=await page.locator("label[class='ng-star-inserted'']").nth(-1);
+   console.log("Order_ID1");
+   console.log("Order_ID2"); 
+   await page.locator("button[routerlink='/dashboard/myorders']").click();
+   const content = await page.textContent('body');
+   if (content.includes(Order_ID1)) {
+     console.log('Order ID1 matches');
+   } else {
+     console.log('Order ID1 not found');
+   }
+   if (content.includes(Order_ID2)) {
+        console.log('Order ID2 matches');
+      } else {
+        console.log('Order ID2 not found');
+		
+      }
+   
+   
+}); 

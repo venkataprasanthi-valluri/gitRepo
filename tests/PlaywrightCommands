@@ -1,0 +1,32 @@
+Playwright commands for running TC's:
+
+To Run all tests in suite end-to-end:
+npx playwright test
+
+To Run particular test
+npx playwright test \tests\<testfilename>
+
+To run Tests in non Headless mode
+npx playwright test --headed
+
+To see Test report
+ npx playwright show-report
+
+To create a truce(kinda like log)
+npx playwright test --trace on
+
+Starts the interactive UI mode.
+npx playwright test --ui
+    
+Runs the tests only on Desktop Chrome
+npx playwright test --project=chromium
+    
+Runs the tests in a specific file.
+npx playwright test example
+    
+Runs the tests in debug mode.
+npx playwright test --debug
+    
+Auto generate tests with Codegen.
+npx playwright codegen
+    
